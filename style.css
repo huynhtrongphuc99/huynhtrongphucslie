@@ -1,0 +1,446 @@
+:root {
+    --white: #ffffff;
+    --green-yellow: #ccff00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* FIX 1: dùng dvh */
+.presentation-container {
+    width: 100%;
+    height: 100dvh;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.slide {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Slide title giữ nguyên */
+.slide-title {
+    background-image: url('img/slide1.jpg');
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.slide-title h1 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: clamp(3rem, 10vw, 12rem); 
+    color: var(--white);
+    text-shadow: 3px 3px 20px rgba(0,0,0,0.8);
+    opacity: 0; 
+    transform: translateY(50px);
+    width: 90%;
+}
+
+.slide-title p {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.5rem, 5vw, 6rem);
+    color: yellow;
+    font-style: italic;
+}
+
+/* Slide content */
+.slide-content {
+    background-color: #051a11;
+}
+
+/* FIX 2 + 3 */
+.slide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 5vh 5%;
+    width: 100%;
+    align-items: center;
+}
+
+/* Text */
+.text-box h2 { 
+    font-size: clamp(1.8rem, 4vw, 5.5rem);
+    color: var(--green-yellow);
+}
+
+.text-box p { 
+    color: white;
+    font-size: clamp(1rem, 2.2vw, 1.6rem);
+    line-height: 1.5;
+}
+
+
+/* IMAGE */
+.image-box {
+    width: 100%;
+    max-width: 100%; /* FIX: bỏ giới hạn 600px */
+    aspect-ratio: 16/9;
+    margin: 0 auto;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Animation giữ nguyên */
+.slide.active h1, .slide.active p,
+.slide.active h2, .slide.active .image-box img {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Controls giữ nguyên */
+.controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+}
+
+.nav-btn {
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* ===== TEAM FINAL ===== */
+
+.team-final {
+    background: beige;
+    background-image: url('img/caotu.jpg'); 
+    background-size: cover;
+}
+
+/* FIX: bỏ height cứng */
+.team-layout {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap; /* 🔥 quan trọng */
+}
+
+/* LEFT COLUMN */
+.member-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 200px; /* thay vì width cố định */
+}
+
+.member-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.member-item p {
+    color: #000;
+}
+
+.member-photo {
+    width: clamp(80px, 15vw, 150px);
+    height: clamp(80px, 15vw, 150px);
+    border-radius: 50%;
+    border: 4px solid var(--green-yellow);
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(204, 255, 0, 0.5);
+    background: #222;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-name {
+    color: white;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin-top: 10px;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+/* RIGHT CONTENT */
+.thanks-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* HEADER */
+.top-header {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+
+@media (max-width: 768px) {
+    .team-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .member-column {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .controls {
+        bottom: 10px;
+        right: 10px;
+    }
+}
+/* ===== TEAM LAYOUT ===== */
+.team-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin-top: 60px;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* ===== VERTICAL TEXT ===== */
+.vertical-thanks {
+    writing-mode: vertical-rl;
+    font-size: clamp(2rem, 4vw, 4.5rem);
+    font-weight: bold;
+    color: red;
+    letter-spacing: 0.5rem;
+    text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+}
+
+/* ===== CENTER VISUAL ===== */
+.center-visual {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.thank-you-center {
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    color: white;
+    margin-top: -30px;
+    text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+}
+
+/* ===== MEMBER PHOTO ===== */
+.member-photo {
+    width: clamp(80px, 15vw, 150px);
+    height: clamp(80px, 15vw, 150px);
+    border-radius: 50%;
+    border: 3px solid #ccff00;
+    box-shadow: 0 0 15px rgba(204, 255, 0, 0.4);
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== IMAGE COLUMN ===== */
+.image-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.image-column .image-box {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.slide.active h1 {
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.slide.active p {
+    animation: fadeInUp 1.5s ease-out 0.3s forwards;
+}
+
+.slide.active .content-box {
+    animation: fadeIn 2s ease-in forwards;
+}
+
+/* ===== STEP SYSTEM ===== */
+.dynamic-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+/* Step 1 */
+.slide.show-step-1 .step-1 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Step 2 */
+.slide.show-step-2 .step-1,
+.slide.show-step-2 .step-2 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Step 3 */
+.slide.show-step-3 .step-1,
+.slide.show-step-3 .step-2,
+.slide.show-step-3 .step-3 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Step 4 */
+.slide.show-step-4 .step-1,
+.slide.show-step-4 .step-2,
+.slide.show-step-4 .step-3,
+.slide.show-step-4 .step-4 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Step 5 */
+.slide.show-step-5 .step-1,
+.slide.show-step-5 .step-2,
+.slide.show-step-5 .step-3,
+.slide.show-step-5 .step-4,
+.slide.show-step-5 .step-5 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+    .slide-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 5vh 5%;
+    }
+
+    .image-column {
+        flex-direction: row;
+    }
+
+    .image-box {
+        flex: 1;
+        aspect-ratio: 16/9;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+    .image-column {
+        flex-direction: column;
+    }
+
+    .image-box {
+        width: 100%;
+    }
+
+    .slide-title h1 {
+        font-size: 2.5rem;
+    }
+
+    .vertical-thanks {
+        writing-mode: horizontal-tb;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .team-layout {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+
+/* ===== PROJECTOR MODE ===== */
+
+/* Ẩn nút khi màn lớn (trình chiếu) */
+@media (min-width: 1024px) {
+    .controls {
+        display: none;
+    }
+}
+
+/* Giữ đúng tỉ lệ slide như PowerPoint */
+.presentation-container {
+    aspect-ratio: 16/9;
+    margin: 0 auto;
+}
+
+/* Tối ưu font cho màn hình lớn */
+@media (min-width: 1400px) {
+    .text-box h2 {
+        font-size: 4rem;
+    }
+
+    .text-box p {
+        font-size: 1.5rem;
+    }
+}
